@@ -1,0 +1,121 @@
+Common files and scripts for building Red Hat documentation.
+
+Assumptions: DocBook xml, *nix, en-US source language.
+
+Q: What actions are there?
+
+A: publican --help
+
+Q: How do I update the POT files for translation?
+
+A: publican update_pot
+
+Q: How do I add a language?
+
+A: publican update_po --langs=<xx-YY>
+
+This will create the language directory and the language specific po files.
+
+Q: How do I update all po files?
+
+A: publican update_po --langs=all
+
+Q: What Book specific options can I use?
+
+A: publican --help_config
+
+Q: Where are the common files located?
+
+A: By default they are in /usr/share/publican
+
+Q: How do I build publican from source?
+
+A: It depends on your platform.
+
+Get the source: svn co http://svn.fedorahosted.org/svn/publican/trunk/publican
+
+Perl
+    cd publican
+TODO: deps
+    perl Build.PL
+    ./Build
+    ./Build test
+    ./Build install
+
+RHEL/Fedora
+    cd publican
+TODO: deps
+    perl Build.PL
+    ./Build rpm
+
+Debian
+    The publican package deb files are in the debian package repo
+    http://packages.debian.org/search?keywords=publican
+    cd publican
+    sudo apt-get install \
+libfile-pushd-perl \
+libconfig-simple-perl \
+libxml-treebuilder-perl \
+libfile-find-rule-perl \
+libmakefile-parser-perl \
+liblocale-maketext-gettext-perl \
+perlmagick \
+libimage-size-perl \
+libdatetime-perl \
+liblocale-po-perl \
+libxml-libxslt-perl \
+libdatetime-format-dateparse-perl \
+libsyntax-highlight-engine-kate-perl \
+libtest-perl-critic-perl \
+libtest-pod-coverage-perl \
+libtest-exception-perl \
+libdbd-sqlite-perl \
+libdevel-cover-perl \
+libdbd-sqlite3-perl
+
+    ./Build dist
+TODO: put the tgz where?
+    debuild
+
+Windows
+    Install Perl http://www.activestate.com/activeperl/
+TODO: deps
+    Install NSIS http://nsis.sourceforge.net/Download
+    Install http://nsis.sourceforge.net/Environmental_Variables:_append,_prepend,_and_remove_entries
+    http://nsis.sourceforge.net/NsUnzip_plugin
+    
+    cd publican
+    perl Build.PL
+    Build
+    Build test
+    perl win_build.pl
+    compile publican.nsi in NSIS
+
+    C:\Perl\lib\HTML\Element.pm patch from cpan
+    XML-TreeBuilder patch
+    Image::Magick <--- how to get this *&^*% working?
+    
+TODO: detail building xml2
+
+TODO: Complete details on building required LibXML and LibXSLT modules
+
+    vcvars32.bat
+
+    perl Makefile.PL INC=-ID:\Data\temp\Redhat\xml2\include LIBS=-LD:\Data\temp\Redhat\xml2\lib
+    nmake
+    copy D:\Data\temp\Redhat\xml2\bin\*.dll blib\arch\auto\XML\LibXML
+    nmake test
+    nmake install
+
+    perl Makefile.PL INC=-ID:\Data\temp\Redhat\xml2\include LIBS=-LD:\Data\temp\Redhat\xml2\lib
+    nmake
+    copy D:\Data\temp\Redhat\xml2\libxslt-1.1.24.win32\bin\*.dll blib\arch\auto\XML\LibXSLT
+    nmake test
+    nmake install
+
+    
+TODO: what about a real list of valid langauges?
+
+	wget http://www.iana.org/assignments/language-subtag-registry
+
+	grep -A 1 -B 0 -P '^Type: (language|redundant)' language-subtag-registry | grep -P '^(Subtag|Tag)' | perl -p -e 's/^(Subtag|Tag):\s*//gi' | wc -l

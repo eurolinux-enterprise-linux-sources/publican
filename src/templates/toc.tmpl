@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="../interactive.css" type="text/css" />
+	<script type="text/javascript" src="../toc.js"></script>
+	<title>[% toc_nav %]</title>
+</head>
+<body class="tocnav" onload="hideNoJS();getCookie();checkCookie();">
+<h1>
+	<a style="background-image:url(images/web_logo.png)" href="index.html" onclick="window.top.location='index.html'" ><span>[% Welcome %]</span></a>
+</h1>
+<div class="tocnavwrap">
+	[% search %] 
+	<div class="lang">
+		<div class="reset">
+			<a href="#" title="collapse document navigation" onclick="clearCookie();">[% collapse_all %]</a>
+		</div>
+		<select id="langselect" class="langselect"  onchange="loadToc();">
+			<option disabled="disabled" value="">[% Language %]</option>
+        	[% FOREACH langs %]
+			<option [% selected %] value="[% lang %]">[% lang_name %]</option>
+	        [% END %]
+		</select>
+	</div>
+	<div class="hidden" id="nocookie">[% nocookie %]</div>
+	[% FOREACH products %]
+	<div class="product collapsed" onclick="toggle(event, '[% product %]');work=1;">
+		<span class="product">[% product_clean %]</span>
+		<div id='[% product %]' class="versions hidden">
+		[% FOREACH versions %]
+		    [%- IF version_label != 'UNUSED' -%]
+			<div id='[% product %].[% version %]' class="version collapsed" onclick="toggle(event, '[% product %].[% version %].books');">
+				<span class="version">[% version_label %]</span>
+				<div id='[% product %].[% version %].books' class="books hidden">
+		    [%- ELSE -%]
+				<div id='[% product %].[% version %].books' class="books">
+		    [%- END -%]
+				[% FOREACH books %]
+					<div id='[% product %].[% version %].[% book %]' class="book collapsed" onclick="toggle(event, '[% product %].[% version %].[% book %].types');">
+						<a class="type" href="[% product %]/[% version %]/html/[% book %]/index.html" onclick="window.top.location='./[% product %]/[% version %]/html/[% book %]/index.html'"><span class="book">[% book_clean %]</span></a> 
+						<div id='[% product %].[% version %].[% book %].types' class="types hidden" onclick="work=0;">
+						[% FOREACH types %]
+							<a class="type" href="[% prep %][% product %]/[% version %]/[% type %]/[% book %]/[% ext %]" [% IF onclick %]onclick="window.top.location='./[% product %]/[% version %]/[% type %]/[% book %]/[% ext %]';return false;"[% END %]>[% type %]</a>
+			        		[% END %]
+						</div>
+					</div>
+	        		[% END %]
+                                [%- IF untrans_books %]
+					<div id='[% product %].[% version %]' class="version collapsed untranslated" onclick="toggle(event, '[% product %].[% version %].untrans_books');">
+						<span class="version">[% Untranslated %]</span>
+						<div id='[% product %].[% version %].untrans_books' class="books hidden">
+						[% FOREACH untrans_books %]
+							<div id='[% product %].[% version %].[% book %]' class="book collapsed" onclick="toggle(event, '[% product %].[% version %].[% book %].types');">
+								<a class="type" href="../[% untrans_lang %]/[% product %]/[% version %]/html/[% book %]/index.html" onclick="window.top.location='../[% untrans_lang %]/[% product %]/[% version %]/html/[% book %]/index.html'"><span class="book">[% book_clean %]</span></a> 
+								<div id='[% product %].[% version %].[% book %].types' class="types hidden" onclick="work=0;">
+								[% FOREACH types %]
+									<a class="type" href="../[% untrans_lang %]/[% prep %][% product %]/[% version %]/[% type %]/[% book %]/[% ext %]" [% IF onclick %]onclick="window.top.location='../[% untrans_lang %]/[% prep %][% product %]/[% version %]/[% type %]/[% book %]/[% ext %]';return false;"[% END %]>[% type %]</a>
+			        				[% END %]
+								</div>
+							</div>
+		        			[% END %]
+						</div>
+					</div>
+	        		[% END %]
+				</div>
+		    [%- IF version != 'UNUSED' -%]
+			</div>					
+		    [%- END -%]
+       		[% END %]
+		</div>					
+	</div>					
+       	[% END %]
+	<div class="nocookie" id="nojs">[% nojs %]</div>
+	<div class="bottom_links">
+		<a href="../toc.html" onclick="window.top.location='../toc.html'" >[% Site_Map %]</a>
+		<a href="./Site_Statistics.html" onclick="window.top.location='./Site_Statistics.html'" >[% Site_Statistics %]</a>
+		<a href="./Site_Tech.html" onclick="window.top.location='./Site_Tech.html'" >[% Site_Tech %]</a>
+	</div>
+</div>					
+</body>
+</html>
+
