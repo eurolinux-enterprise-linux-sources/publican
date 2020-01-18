@@ -1,0 +1,13 @@
+diff -ru Publican-v3.2.0/datadir/xsl/dt_htmlsingle_spec.xsl Publican-v3.2.0-patched/datadir/xsl/dt_htmlsingle_spec.xsl
+--- Publican-v3.2.0/datadir/xsl/dt_htmlsingle_spec.xsl	2013-08-08 16:02:52.000000000 +1000
++++ Publican-v3.2.0-patched/datadir/xsl/dt_htmlsingle_spec.xsl	2014-12-03 11:06:24.861237573 +1000
+@@ -50,7 +50,8 @@
+ %description
+ <xsl:if test="$translation = '1'"><xsl:value-of select="$language"/> translation of <xsl:value-of select="$docname"/>
+ 
+-%description -l <xsl:value-of select="$lang"/></xsl:if>
++%description -l <xsl:value-of select="$lang"/><xsl:text>
++</xsl:text></xsl:if>
+ <xsl:value-of select="$abstract" />
+ 
+ %prep

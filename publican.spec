@@ -22,13 +22,14 @@
 
 Name:           publican
 Version:        3.2.0
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Common files and scripts for publishing with DocBook XML
 # For a breakdown of the licensing, refer to LICENSE
 License:        (GPLv2+ or Artistic) and CC0
 Group:          Applications/Publishing
 URL:            https://publican.fedorahosted.org
 Source0:        https://fedorahosted.org/released/publican/Publican-v%{version}.tar.gz
+Patch0:         bz1166706.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Provides:	publican-common = %{version}
@@ -182,6 +183,7 @@ Website style for common brand for DocBook5 content
 
 %prep
 %setup -q -n Publican-v%{version}
+%patch0 -p1
 
 %build
 %{__perl} Build.PL installdirs=vendor --nocolours=1
@@ -279,6 +281,9 @@ rm -rf $RPM_BUILD_ROOT
 %{wwwdir}/common-db5
 
 %changelog
+* Wed Dec 03 2014 Jeff Fearn <jfearn@redhat.com> - 3.2.0-4
+- Fix missing newline in desktop spec to translations. Resolves: rhbz#1166706
+
 * Tue Jan 7 2014 Jeff Fearn <jfearn@redhat.com> - 3.2.0-3
 - Fix build dep. Resolves: rhbz#1048896
 - Remove epoch.
