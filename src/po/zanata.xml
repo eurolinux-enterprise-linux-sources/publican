@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<config xmlns="http://zanata.org/namespace/config/">
+  <url>https://translate.zanata.org/zanata/</url>
+  <project>publican</project>
+  <project-version>3</project-version>
+  <project-type>gettext</project-type>
+
+  <locales>
+    <locale>ar</locale>
+    <locale>as</locale>
+    <locale>ast</locale>
+    <locale>bg</locale>
+    <locale>bn-IN</locale>
+    <locale>bs</locale>
+    <locale>ca</locale>
+    <locale>cs</locale>
+    <locale>da</locale>
+    <locale map-from="de">de-DE</locale>
+    <locale>de-CH</locale>
+    <locale>el</locale>
+    <locale map-from="es">es-ES</locale>
+    <locale>fa</locale>
+    <locale>fi</locale>
+    <locale>fr</locale>
+    <locale>gu</locale>
+    <locale>he</locale>
+    <locale>hi</locale>
+    <locale>hr</locale>
+    <locale>hu</locale>
+    <locale>ia</locale>
+    <locale>id</locale>
+    <locale>is</locale>
+    <locale>it</locale>
+    <locale>ja</locale>
+    <locale>kn</locale>
+    <locale>ko</locale>
+    <locale>lv</locale>
+    <locale>ml</locale>
+    <locale>mr</locale>
+    <locale>nb</locale>
+    <locale>nl</locale>
+    <locale>or</locale>
+    <locale>pa</locale>
+    <locale>pl</locale>
+    <locale map-from="pt">pt-PT</locale>
+    <locale>pt-BR</locale>
+    <locale>ru</locale>
+    <locale>si</locale>
+    <locale>sk</locale>
+    <locale map-from="sr@Latn">sr-Latn</locale>
+    <locale map-from="sr">sr-Cyrl</locale>
+    <locale>sv</locale>
+    <locale>ta</locale>
+    <locale>te</locale>
+    <locale>th</locale>
+    <locale>uk</locale>
+    <locale map-from="zh_CN">zh-Hans-CN</locale>
+    <locale map-from="zh_TW">zh-Hant-TW</locale>
+  </locales>
+
+</config>
+

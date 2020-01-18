@@ -1,0 +1,60 @@
+diff -ru Publican-v3.1.5/datadir/xsl/web-spec.xsl Publican-v3.1.5-patched/datadir/xsl/web-spec.xsl
+--- Publican-v3.1.5/datadir/xsl/web-spec.xsl	2013-03-18 15:02:58.000000000 +1000
++++ Publican-v3.1.5-patched/datadir/xsl/web-spec.xsl	2013-03-20 17:05:42.000000000 +1000
+@@ -22,7 +22,8 @@
+ Release:       <xsl:value-of select="$rpmrel"/>%{?dist}
+ <xsl:if test="$translation = '1'">Summary:      <xsl:value-of select="$language"/> translation of <xsl:value-of select="$book-title"/>
+ Summary(<xsl:value-of select="$lang"/>):       <xsl:value-of select="$full_subtitle"/></xsl:if>
+-<xsl:if test="$translation != '1'">Summary:       <xsl:value-of select="$full_subtitle"/></xsl:if>
++<xsl:if test="$translation != '1'">
++Summary:       <xsl:value-of select="$full_subtitle"/></xsl:if>
+ Group:         Documentation
+ License:       <xsl:value-of select="$license"/>
+ URL:           <xsl:value-of select="$url"/>
+@@ -32,15 +33,20 @@
+ BuildRequires: publican >= <xsl:value-of select="$spec_version"/>
+ BuildRequires: desktop-file-utils
+ Requires:      publican >= <xsl:value-of select="$spec_version"/>
+-<xsl:if test="$brand != 'publican-common'">BuildRequires: <xsl:value-of select="$brand"/></xsl:if>
+-<xsl:if test="$web_obsoletes != ''">Obsoletes:    <xsl:value-of select="$web_obsoletes"/></xsl:if>
+-<xsl:if test="$web_req != ''">Requires:    <xsl:value-of select="$web_req"/></xsl:if>
++<xsl:if test="$brand != 'publican-common'">
++BuildRequires: <xsl:value-of select="$brand"/></xsl:if>
++<xsl:if test="$web_obsoletes != ''">
++Obsoletes:    <xsl:value-of select="$web_obsoletes"/></xsl:if>
++<xsl:if test="$web_req != ''">
++Requires:    <xsl:value-of select="$web_req"/></xsl:if>
+ Requires:      <xsl:value-of select="$brand"/>-web
+ 
+ %description
+ <xsl:if test="$translation = '1'"><xsl:value-of select="$language"/> translation of <xsl:value-of select="$book-title"/>
+ 
+ %description -l <xsl:value-of select="$lang"/> </xsl:if>
++<xsl:text>
++</xsl:text> 
+ <xsl:value-of select="$abstract" />
+ 
+ %package -n <xsl:value-of select="$book-title"/>-<xsl:value-of select="$lang"/>
+@@ -57,13 +63,18 @@
+ %else
+ Requires:    xdg-utils
+ %endif
+-<xsl:if test="$dt_obsoletes != ''">Obsoletes:    <xsl:value-of select="$dt_obsoletes"/></xsl:if>
+-<xsl:if test="$dt_requires != ''">Requires:    <xsl:value-of select="$dt_requires"/></xsl:if>
++<xsl:if test="$dt_obsoletes != ''">
++Obsoletes:    <xsl:value-of select="$dt_obsoletes"/></xsl:if>
++<xsl:if test="$dt_requires != ''">
++Requires:    <xsl:value-of select="$dt_requires"/></xsl:if>
+ 
+ %description  -n <xsl:value-of select="$book-title"/>-<xsl:value-of select="$lang"/>
+-<xsl:if test="$translation = '1'"><xsl:value-of select="$language"/> translation of <xsl:value-of select="$docname"/>
++<xsl:if test="$translation = '1'">
++<xsl:text>
++</xsl:text> 
++<xsl:value-of select="$language"/> translation of <xsl:value-of select="$docname"/>
+ 
+-%description -l <xsl:value-of select="$lang"/>  -n <xsl:value-of select="$book-title"/>-<xsl:value-of select="$lang"/> </xsl:if>
++%description -l <xsl:value-of select="$lang"/>  -n <xsl:value-of select="$book-title"/>-<xsl:value-of select="$lang"/></xsl:if>
+ <xsl:text>
+ </xsl:text>
+ <xsl:value-of select="$abstract" />
