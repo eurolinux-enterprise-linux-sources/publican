@@ -3,7 +3,7 @@ abstract: 'Used to control settings for sub modules.'
 author:
   - 'Jeff Fearn <jfearn@redhat.com>'
 build_requires:
-  Archive::Tar: 0
+  Archive::Tar: 1.84
   Archive::Zip: 0
   Carp: 0
   Config::Simple: 0
@@ -39,7 +39,7 @@ build_requires:
   Pod::Usage: 0
   Sort::Versions: 0
   String::Similarity: 0
-  Syntax::Highlight::Engine::Kate: 0
+  Syntax::Highlight::Engine::Kate: 0.07
   Template: 0
   Template::Constants: 0
   Term::ANSIColor: 0
@@ -52,7 +52,7 @@ build_requires:
   XML::LibXML: 1.67
   XML::LibXSLT: 1.67
   XML::Simple: 0
-  XML::TreeBuilder: 4
+  XML::TreeBuilder: 4.2
 configure_requires:
   Module::Build: 0
 generated_by: 'Module::Build version 0.3624'
@@ -64,7 +64,7 @@ name: Publican
 provides:
   Publican:
     file: lib/Publican.pm
-    version: v3.1.5
+    version: v3.2.0
   Publican::Builder:
     file: lib/Publican/Builder.pm
     version: 0.2
@@ -180,7 +180,7 @@ provides:
     file: lib/Publican/XmlClean.pm
     version: 0.2
 requires:
-  Archive::Tar: 0
+  Archive::Tar: 1.84
   Archive::Zip: 0
   Carp: 0
   Config::Simple: 0
@@ -214,7 +214,7 @@ requires:
   Pod::Usage: 0
   Sort::Versions: 0
   String::Similarity: 0
-  Syntax::Highlight::Engine::Kate: 0
+  Syntax::Highlight::Engine::Kate: 0.07
   Template: 0
   Template::Constants: 0
   Term::ANSIColor: 0
@@ -224,7 +224,7 @@ requires:
   XML::LibXML: 1.67
   XML::LibXSLT: 1.67
   XML::Simple: 0
-  XML::TreeBuilder: 4
+  XML::TreeBuilder: 4.2
 resources:
   license: http://dev.perl.org/licenses/
-version: v3.1.5
+version: v3.2.0
